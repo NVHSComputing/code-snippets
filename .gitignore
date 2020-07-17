@@ -1,0 +1,6 @@
+# java compilation
+*.iml
+
+# directories
+.idea/
+out/
