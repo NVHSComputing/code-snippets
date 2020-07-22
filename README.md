@@ -20,5 +20,6 @@ There are a couple snippet types contained in this repository. So far we have:
 - Streams API
 - Search Algorithms
 - Comparators
+- DataStructures Nested Classes
 
 Compiled and maintained by Raymond Zhao. Please contact me for any questions / concerns.
