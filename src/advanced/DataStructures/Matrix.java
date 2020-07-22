@@ -26,7 +26,7 @@ public class Matrix
 	}
 
 	// copy constructor
-	private Matrix(Matrix A) { this(A.data); }
+	public Matrix(Matrix A) { this(A.data); }
 
 	// create and return a random M-by-N matrix with values between 0 and 1
 	public Matrix random(int M, int N) 
@@ -177,4 +177,7 @@ public class Matrix
 	
 	public double getPoint(int row,int column)
 	{return data[row][column];}
+	
+	public void setPoint(double val,int row,int column)
+	{data[row][column]=val;}
 }
