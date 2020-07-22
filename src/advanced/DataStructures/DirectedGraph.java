@@ -5,7 +5,7 @@ public class DirectedGraph
 	private int points;
 	private ArrayList<Integer>[] originConnections;
 	private ArrayList<Integer>[] destinationConnections;
-	private boolean[][] adjacencyMatrix;
+	private Matrix adjacencyMatrix;
 	public DirectedGraph(int points)
 	{
 		this.points=points;
@@ -14,7 +14,22 @@ public class DirectedGraph
 		for(int x=0;x<points;x++)
 		{originConnections[x]=new ArrayList<Integer>();
 		destinationConnections[x]=new ArrayList<Integer>();}
-		adjacencyMatrix=new boolean[points][points];
+		adjacencyMatrix=new Matrix(points,points);
+	}
+	public DirectedGraph(Matrix m)
+	{
+		DirectedGraph dg=new DirectedGraph(m.show().length);
+		for(int x=0;x<dg.points;x++)
+		{
+			for(int y=0;y<dg.points;y++)
+			{
+				dg.addConnection(x,y);
+			}
+		}
+		points=dg.points;
+		originConnections=dg.originConnections;
+		destinationConnections=dg.destinationConnections;
+		adjacencyMatrix=dg.adjacencyMatrix;
 	}
 	public void addConnection(int origin,int destination)
 	{
@@ -35,9 +50,36 @@ public class DirectedGraph
 		{y--;}}
 
 		//inputing the connection
-		originConnections[origin].add(x,destination);
-		destinationConnections[destination].add(y,origin);
-		adjacencyMatrix[origin][destination]=true;
+		if(originConnections[origin].get(x)!=destination)
+		{originConnections[origin].add(x);}
+		if(destinationConnections[destination].get(x)!=origin)
+		{destinationConnections[destination].add(y);}
+		adjacencyMatrix.setPoint(1, origin, destination);
+	}
+	
+	public void removeConnection(int origin,int destination)
+	{
+		//finding the location to input new connections
+		origin--;destination--;
+		BasicAlgos b=new BasicAlgos();
+		int x=0;
+		if(originConnections[origin].size()>0)
+		{x=b.indexOfClosestValue(originConnections[origin],destination);
+		if(originConnections[origin].get(x)==destination)
+		{return;}
+		if(originConnections[origin].get(x)>destination)
+		{x--;}}
+		int y=0;
+		if(destinationConnections[destination].size()>0)
+		{y=b.indexOfClosestValue(destinationConnections[destination],origin);
+		if(destinationConnections[destination].get(y)>origin)
+		{y--;}}
+		//inputing the connection
+		if(originConnections[origin].get(x)==destination)
+		{originConnections[origin].remove(x);}
+		if(destinationConnections[destination].get(x)==origin)
+		{destinationConnections[destination].remove(y);}
+		adjacencyMatrix.setPoint(0, origin, destination);
 	}
 
 	//retrieval methods
@@ -45,7 +87,7 @@ public class DirectedGraph
 	{return originConnections;}
 	public ArrayList<Integer>[] getDestinationConnections()
 	{return destinationConnections;}
-	public boolean[][] getAdjacencyMatrix()
+	public Matrix getAdjacencyMatrix()
 	{return adjacencyMatrix;}
 
 	public boolean isAcyclic()
@@ -180,5 +222,9 @@ public class DirectedGraph
 			} 
 			return sol;
 		} 
+	}
+	public boolean areConnected(int origin,int destination)
+	{
+		return adjacencyMatrix.getPoint(origin, destination)==0;
 	}
 }
