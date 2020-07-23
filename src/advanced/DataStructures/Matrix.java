@@ -168,8 +168,42 @@ public class Matrix
 		return x;
 
 	}
-
-	// print matrix to standard output
+	
+	public int floodFill(int row,int column)
+	{
+		double val=data[row][column];Matrix visited=new Matrix(new double[M][N]);visited.setPoint(1, row, column);
+		int fin=0;
+		if(row>0)
+		{fin+=floodFill(val,visited,row-1,column);}
+		if(row<M-1)
+		{fin+=floodFill(val,visited,row+1,column);}
+		if(column>0)
+		{fin+=floodFill(val,visited,row,column-1);}
+		if(column<N-1)
+		{fin+=floodFill(val,visited,row,column+1);}
+		return 1+fin;
+	}
+	
+	public int floodFill(double value,Matrix visited,int row,int column)
+	{
+		if(visited.getPoint(row,column)==1)
+		{return 0;}
+		visited.setPoint(1, row, column);
+		if(data[row][column]!=value)
+		{return 0;}
+		int fin=0;
+		if(row>0)
+		{fin+=floodFill(value,visited,row-1,column);}
+		if(row<M-1)
+		{fin+=floodFill(value,visited,row+1,column);}
+		if(column>0)
+		{fin+=floodFill(value,visited,row,column-1);}
+		if(column<N-1)
+		{fin+=floodFill(value,visited,row,column+1);}
+		return 1+fin;
+	}
+	
+	// returns a 2D array
 	public double[][] show()
 	{
 		return data;
