@@ -1,5 +1,6 @@
 import java.util.*;
 //compiled by Nihal Shivannagari from independent work and outside sources (so it might not work)
+//for this class, you should make a dataset that pairs each point to a value for convenience
 public class DirectedGraph
 {
 	private int points;
