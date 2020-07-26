@@ -22,6 +22,10 @@ public class Tree
 			branch.parent=this;
 			leaves.add(branch);
 		}
+		public void setParent(Tree tree)
+		{
+			parent=tree;
+		}
 		
 		//this is a Depth First Search
 		//this will not search for anything that is not contained with this Tree's leaves or lower
