@@ -21,12 +21,12 @@ public class Tree
 		public void addBranch(Tree branch)
 		{
 			branch.parent=this;
-			leaves.add(branch);
+			if(!leaves.contains(this)){leaves.add(branch);}
 		}
 		public void setParent(Tree tree)
 		{
 			parent=tree;
-			parent.leaves.add(this);
+			if(!parent.leaves.contains(this)){parent.leaves.add(this);}
 		}
 		public Tree getParent()
 		{
