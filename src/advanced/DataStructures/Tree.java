@@ -30,6 +30,14 @@ public class Tree
 		{
 			return parent;
 		}
+		public int getValue()
+		{
+			return pointVal;
+		}
+		public ArrayList<Tree> getLeaves()
+		{
+			return leaves;
+		}
 		
 		//this is a Depth First Search
 		//this will not search for anything that is not contained with this Tree's leaves or lower
