@@ -26,6 +26,10 @@ public class Tree
 		{
 			parent=tree;
 		}
+		public Tree getParent()
+		{
+			return parent;
+		}
 		
 		//this is a Depth First Search
 		//this will not search for anything that is not contained with this Tree's leaves or lower
