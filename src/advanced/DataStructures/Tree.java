@@ -12,7 +12,10 @@ public class Tree
 			pointVal=value;
 			this.parent=parent;
 			leaves=new ArrayList<Tree>();
-			parent.leaves.add(this);
+			if(parent!=null)
+			{
+				parent.leaves.add(this);
+			}
 		}
 		public void addLeaf(int value)
 		{
